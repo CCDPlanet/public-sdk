@@ -47,4 +47,40 @@ class AuthServiceClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * UpdateAccount обновляет данные на аккаунте. Метод требует доступ к
+     * 'account:update'. Некоторые из возможных ошибок:
+     * Неверный формат почты: InvalidArgument, "invalid format"
+     * Неразрешимый хост почты: InvalidArgument, "unresolvable host"
+     * @param \Auth\UpdateAccountInfo $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Auth\Account
+     */
+    public function UpdateAccount(\Auth\UpdateAccountInfo $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/auth.AuthService/UpdateAccount',
+        $argument,
+        ['\Auth\Account', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * UpdatePassword обновляет пароль на аккаунте. Метод требует доступ к
+     * 'account:update'. Некоторые из возможных ошибок:
+     * Прежний пароль не совпадает: InvalidArgument, "old password does not match"
+     * Новый пароль слишком слабый: InvalidArgument, "weak password"
+     * @param \Auth\UpdatePasswordRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
+     */
+    public function UpdatePassword(\Auth\UpdatePasswordRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/auth.AuthService/UpdatePassword',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
 }
